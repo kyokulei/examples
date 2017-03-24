@@ -80,4 +80,17 @@ public class CompleteFutureUtil {
 		return CompletableFuture.allOf(futures.toArray(new CompletableFuture[futures.size()]));
 	}
 
+	public static CompletableFuture<Integer> compute(int i, ScheduledExecutorService executor) {
+
+		return CompletableFuture.supplyAsync(() -> {
+
+			if (i % 5 == 0) {
+				return i;
+			} else {
+				throw new IllegalStateException("ssssss" + i);
+			}
+
+		}, executor);
+
+	}
 }
