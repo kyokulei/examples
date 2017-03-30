@@ -21,7 +21,7 @@ public class Storage {
 		aLock.lock();
 
 		try {
-			while (queue.size() == CAPACITY) {
+			if (queue.size() == CAPACITY) {
 				System.out.println(Thread.currentThread().getName() + " : Queue is full, waiting");
 				notFull.await();
 			}
@@ -40,7 +40,7 @@ public class Storage {
 		aLock.lock();
 
 		try {
-			while (queue.size() == 0) {
+			if (queue.size() == 0) {
 				System.out.println(Thread.currentThread().getName() + " : Queue is empty, waiting");
 				notEmpty.await();
 			}
